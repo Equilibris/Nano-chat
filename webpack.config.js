@@ -1,7 +1,10 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const { ProvidePlugin } = require('webpack')
+const {
+	ProvidePlugin,
+	optimize: { SplitChunksPlugin },
+} = require('webpack')
 
 /**
  * @typedef {object} Config
@@ -29,7 +32,7 @@ const noConfig = {
  */
 const config = {
 	entry: {
-		index: ['./src/index.ts'],
+		index: ['./src/index.ts', './styles/index.scss'],
 	},
 
 	mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -91,5 +94,29 @@ const config = {
 		}),
 		new ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }),
 	],
+
+	optimization: {
+		splitChunks: {
+			chunks: 'all',
+			minSize: 20000,
+			minRemainingSize: 0,
+			minChunks: 1,
+			maxAsyncRequests: 30,
+			maxInitialRequests: 30,
+			enforceSizeThreshold: 50000,
+			cacheGroups: {
+				defaultVendors: {
+					test: /[\\/]node_modules[\\/]/,
+					priority: -10,
+					reuseExistingChunk: true,
+				},
+				default: {
+					minChunks: 2,
+					priority: -20,
+					reuseExistingChunk: true,
+				},
+			},
+		},
+	},
 }
 module.exports = config
