@@ -60,6 +60,10 @@ const config = {
 		path: path.resolve(__dirname, 'dist'),
 	},
 
+	devServer: {
+		contentBase: './dist',
+	},
+
 	plugins: [
 		(compiler) => {
 			for (const name in compiler.options.entry) {
