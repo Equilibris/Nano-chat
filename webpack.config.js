@@ -5,26 +5,18 @@ const {
 	ProvidePlugin,
 	optimize: { SplitChunksPlugin },
 } = require('webpack')
+const { enConfig, noConfig } = require('./i18s')
+const ejs = require('ejs')
+const fs = require('fs')
 
-/**
- * @typedef {object} Config
- * @property {string} title
- * @property {string} signIn
- * @property {string} signUp
- */
-
-/**
- * @type {Config}
- */
-const enConfig = {
-	title: 'Nano Chat',
-	signIn: 'Sign in',
-	signUp: 'Sign up',
-}
-const noConfig = {
-	title: 'Nano Chat',
-	signIn: 'Log in',
-	signUp: 'Register deg',
+const baseTemplateConfig = {
+	include(templateName, data) {
+		return ejs.render(
+			fs.readFileSync(`./src/templates/${templateName}.ejs`),
+			{ ...baseTemplateConfig, ...data },
+			{ async: false }
+		)
+	},
 }
 
 /**
@@ -76,12 +68,12 @@ const config = {
 				const plugins = [
 					new HtmlWebpackPlugin({
 						filename: `${name}.html`,
-						templateParameters: enConfig,
+						templateParameters: { ...baseTemplateConfig, ...enConfig },
 						...baseConfig,
 					}),
 					new HtmlWebpackPlugin({
 						filename: `no.${name}.html`,
-						templateParameters: noConfig,
+						templateParameters: { ...baseTemplateConfig, ...noConfig },
 						...baseConfig,
 					}),
 				]
