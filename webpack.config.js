@@ -36,7 +36,56 @@ const config = {
 				exclude: /node_modules/,
 			},
 			{
-				test: /\.scss$/,
+				test: /\.html$/i,
+				loader: 'html-loader',
+				options: {
+					minimize: true,
+					/**
+					 *
+					 * @param {string} content
+					 * @param {import('webpack').LoaderContext<{}>} loaderContext
+					 * @returns {Promise<string>}
+					 */
+					// preprocessor: async (content, loaderContext) => {
+					// 	const dom = htmlParser(content)
+
+					// 	const elements = dom.querySelectorAll(
+					// 		'link[rel="stylesheet"][href]'
+					// 	)
+
+					// 	let lock, release
+
+					// 	for (const element of elements) {
+					// 		lock = new Promise((resolve, reject) => {
+					// 			release = resolve
+					// 		})
+					// 		let absPath
+					// 		loaderContext.resolve(
+					// 			loaderContext.context,
+					// 			element.attrs.href,
+					// 			(e, path) => {
+					// 				absPath = path
+					// 				release()
+					// 			}
+					// 		)
+					// 		await lock
+					// 		if (absPath) {
+					// 			loaderContext.addDependency(absPath)
+
+					// 			console.log(loaderContext.importModule)
+
+					// 			const output = await loaderContext.importModule(absPath, {})
+
+					// 			console.log(output)
+					// 		}
+					// 	}
+
+					// 	return content
+					// },
+				},
+			},
+			{
+				test: /\.scss$/i,
 				use: [
 					process.env.NODE_ENV !== 'production'
 						? 'style-loader'
