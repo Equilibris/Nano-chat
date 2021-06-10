@@ -11,7 +11,7 @@ const fs = require('fs')
 
 const baseTemplateConfig = {
 	include(templateName, data) {
-		return ejs.render(fs.readFileSync(`./src/templates/${templateName}.ejs`), {
+		return ejs.render(fs.readFileSync(`./src/templates/${templateName}.ejs`).toString(), {
 			...baseTemplateConfig,
 			...data,
 		})
