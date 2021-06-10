@@ -11,11 +11,10 @@ const fs = require('fs')
 
 const baseTemplateConfig = {
 	include(templateName, data) {
-		return ejs.render(
-			fs.readFileSync(`./src/templates/${templateName}.ejs`),
-			{ ...baseTemplateConfig, ...data },
-			{ async: false }
-		)
+		return ejs.render(fs.readFileSync(`./src/templates/${templateName}.ejs`), {
+			...baseTemplateConfig,
+			...data,
+		})
 	},
 }
 
@@ -84,7 +83,6 @@ const config = {
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
 		}),
-		new ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }),
 	],
 
 	optimization: {
