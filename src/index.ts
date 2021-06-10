@@ -1,3 +1,1 @@
-$(() => {
-	console.log('hello world')
-})
+import './components/nav-bar'

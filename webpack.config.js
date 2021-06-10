@@ -8,13 +8,17 @@ const {
 const { enConfig, noConfig } = require('./i18s')
 const ejs = require('ejs')
 const fs = require('fs')
+const CopyPlugin = require('copy-webpack-plugin')
 
 const baseTemplateConfig = {
 	include(templateName, data) {
-		return ejs.render(fs.readFileSync(`./src/templates/${templateName}.ejs`).toString(), {
-			...baseTemplateConfig,
-			...data,
-		})
+		return ejs.render(
+			fs.readFileSync(`./src/templates/${templateName}.ejs`).toString(),
+			{
+				...baseTemplateConfig,
+				...data,
+			}
+		)
 	},
 }
 
@@ -23,7 +27,11 @@ const baseTemplateConfig = {
  */
 const config = {
 	entry: {
-		index: ['./src/index.ts', './styles/index.scss'],
+		index: [
+			'./src/index.ts',
+			'./styles/index.scss',
+			'./styles/global-styles.scss',
+		],
 	},
 
 	mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -40,52 +48,25 @@ const config = {
 				loader: 'html-loader',
 				options: {
 					minimize: true,
-					/**
-					 *
-					 * @param {string} content
-					 * @param {import('webpack').LoaderContext<{}>} loaderContext
-					 * @returns {Promise<string>}
-					 */
-					// preprocessor: async (content, loaderContext) => {
-					// 	const dom = htmlParser(content)
-
-					// 	const elements = dom.querySelectorAll(
-					// 		'link[rel="stylesheet"][href]'
-					// 	)
-
-					// 	let lock, release
-
-					// 	for (const element of elements) {
-					// 		lock = new Promise((resolve, reject) => {
-					// 			release = resolve
-					// 		})
-					// 		let absPath
-					// 		loaderContext.resolve(
-					// 			loaderContext.context,
-					// 			element.attrs.href,
-					// 			(e, path) => {
-					// 				absPath = path
-					// 				release()
-					// 			}
-					// 		)
-					// 		await lock
-					// 		if (absPath) {
-					// 			loaderContext.addDependency(absPath)
-
-					// 			console.log(loaderContext.importModule)
-
-					// 			const output = await loaderContext.importModule(absPath, {})
-
-					// 			console.log(output)
-					// 		}
-					// 	}
-
-					// 	return content
-					// },
 				},
 			},
 			{
-				test: /\.scss$/i,
+				test: /\.module\.scss$/i,
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							name:
+								process.env.NODE_ENV === 'production'
+									? '[contenthash].css'
+									: '[path][name].css',
+						},
+					},
+					'sass-loader',
+				],
+			},
+			{
+				test: /(?<!\.module)\.scss$/i,
 				use: [
 					process.env.NODE_ENV !== 'production'
 						? 'style-loader'
@@ -97,7 +78,8 @@ const config = {
 		],
 	},
 	resolve: {
-		extensions: ['.tsx', '.ts', '.js'],
+		extensions: ['.tsx', '.ts', '.js', '.scss', '.module.scss', '.html'],
+		alias: { styles: './styles/' },
 	},
 	output: {
 		filename: '[name].js',
@@ -129,6 +111,7 @@ const config = {
 				plugins.forEach((x) => x.apply(compiler))
 			}
 		},
+		new CopyPlugin({ patterns: [{ from: 'static' }] }),
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
 		}),

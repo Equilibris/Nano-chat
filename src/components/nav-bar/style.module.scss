@@ -1,0 +1,15 @@
+@import '../../../styles/global'; // TODO: make this an alias
+
+:host {
+	width: 100%;
+	height: $nav-height;
+
+	font-size: 2em;
+
+	ul {
+		display: flex;
+
+		justify-content: center;
+		align-items: center;
+	}
+}
