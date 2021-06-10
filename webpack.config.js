@@ -71,7 +71,7 @@ const config = {
 						...baseConfig,
 					}),
 					new HtmlWebpackPlugin({
-						filename: `no.${name}.html`,
+						filename: `no/${name}.html`,
 						templateParameters: { ...baseTemplateConfig, ...noConfig },
 						...baseConfig,
 					}),
