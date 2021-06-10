@@ -44,10 +44,11 @@ const config = {
 				exclude: /node_modules/,
 			},
 			{
-				test: /\.html$/i,
-				loader: 'html-loader',
+				test: /\.ejs$/i,
+				loader: 'ejs-loader',
 				options: {
-					minimize: true,
+					esModule: true,
+					variable: 'data',
 				},
 			},
 			{
@@ -78,7 +79,15 @@ const config = {
 		],
 	},
 	resolve: {
-		extensions: ['.tsx', '.ts', '.js', '.scss', '.module.scss', '.html'],
+		extensions: [
+			'.tsx',
+			'.ts',
+			'.js',
+			'.scss',
+			'.module.scss',
+			'.ejs',
+			'.html',
+		],
 		alias: { styles: './styles/' },
 	},
 	output: {
@@ -115,6 +124,7 @@ const config = {
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
 		}),
+		new ProvidePlugin({ _: 'underscore' }),
 	],
 
 	optimization: {
