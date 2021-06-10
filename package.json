@@ -7,7 +7,9 @@
 	"scripts": {
 		"start": "serve",
 		"build": "cross-env NODE_ENV=production webpack",
-		"dev": "webpack serve"
+		"dev": "webpack serve",
+		"docker:build": "docker build -t nano-chat/nano-chat:latest .",
+		"docker:run": "docker run --name nano-chat-main -d -p 8080:80 nano-chat/nano-chat"
 	},
 	"devDependencies": {
 		"@types/ejs": "^3.0.6",
