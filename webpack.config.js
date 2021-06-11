@@ -44,7 +44,7 @@ const config = {
 				exclude: /node_modules/,
 			},
 			{
-				test: /\.ejs$/i,
+				test: /\.template\.ejs$/i,
 				loader: 'ejs-loader',
 				options: {
 					esModule: true,
@@ -88,7 +88,10 @@ const config = {
 			'.ejs',
 			'.html',
 		],
-		alias: { styles: './styles/' },
+		alias: {
+			styles: './styles/',
+			framework: path.resolve(__dirname, './src/components/framework/'),
+		},
 	},
 	output: {
 		filename: '[name].js',
