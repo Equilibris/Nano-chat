@@ -8,11 +8,12 @@
 		"start": "serve",
 		"build": "cross-env NODE_ENV=production webpack",
 		"dev": "webpack serve",
-		"docker:build": "docker build -t nano-chat/nano-chat:latest .",
-		"docker:run": "docker run --name nano-chat-main -d -p 8080:80 --mount source=nano-chat-nginx-vol,target=/usr/ nano-chat/nano-chat",
+		"docker:build": "docker build --no-cache -t nano-chat/nano-chat:latest .",
+		"docker:run": "docker run -it --rm -d -p 8080:80 --mount source=nano-chat-nginx-vol,target=/usr/ --name nano-chat-main nano-chat/nano-chat:latest",
 		"docker:destroy": "docker rm -f nano-chat-main",
 		"docker:volume": "docker volume create nano-chat-nginx-vol",
-		"docker:volume:destroy": "docker volume rm nano-chat-nginx-vol"
+		"docker:volume:destroy": "docker volume rm nano-chat-nginx-vol",
+		"docker": "yarn docker:destroy; yarn docker:volume:destroy; yarn docker:volume; yarn docker:run"
 	},
 	"devDependencies": {
 		"@types/copy-webpack-plugin": "^8.0.0",
@@ -39,7 +40,9 @@
 		"typescript": "^4.3.2",
 		"webpack": "^5.38.1",
 		"webpack-cli": "^4.7.2",
-		"webpack-dev-server": "^3.11.2"
+		"webpack-dev-server": "^3.11.2",
+		"workbox-routing": "^6.1.5",
+		"workbox-strategies": "^6.1.5"
 	},
 	"dependencies": {
 		"serve": "^12.0.0"

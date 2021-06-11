@@ -6,7 +6,11 @@
 		"target": "ESNext",
 		"jsx": "react",
 		"allowJs": true,
-		"moduleResolution": "node"
+		"moduleResolution": "node",
+		"baseUrl": ".",
+		"paths": {
+			"framework": ["./src/components/framework"]
+		}
 	},
 	"exclude": ["node_modules"]
 }

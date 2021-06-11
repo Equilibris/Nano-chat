@@ -4146,6 +4146,25 @@ wildcard@^2.0.0:
   resolved "https://registry.yarnpkg.com/wildcard/-/wildcard-2.0.0.tgz#a77d20e5200c6faaac979e4b3aadc7b3dd7f8fec"
   integrity sha512-JcKqAHLPxcdb9KM49dufGXn2x3ssnfjbcaQdLlfZsL9rH9wgDQjUtDxbo8NE0F6SFvydeu1VhZe7hZuHsB2/pw==
 
+workbox-core@^6.1.5:
+  version "6.1.5"
+  resolved "https://registry.yarnpkg.com/workbox-core/-/workbox-core-6.1.5.tgz#424ff600e2c5448b14ebd58b2f5ac8ed91b73fb9"
+  integrity sha512-9SOEle7YcJzg3njC0xMSmrPIiFjfsFm9WjwGd5enXmI8Lwk8wLdy63B0nzu5LXoibEmS9k+aWF8EzaKtOWjNSA==
+
+workbox-routing@^6.1.5:
+  version "6.1.5"
+  resolved "https://registry.yarnpkg.com/workbox-routing/-/workbox-routing-6.1.5.tgz#15884d6152dba03faef83f0b23331846d8b6ef8e"
+  integrity sha512-uC/Ctz+4GXGL42h1WxUNKxqKRik/38uS0NZ6VY/EHqL2F1ObLFqMHUZ4ZYvyQsKdyI82cxusvhJZHOrY0a2fIQ==
+  dependencies:
+    workbox-core "^6.1.5"
+
+workbox-strategies@^6.1.5:
+  version "6.1.5"
+  resolved "https://registry.yarnpkg.com/workbox-strategies/-/workbox-strategies-6.1.5.tgz#2549a3e78f0eda371b760c4db21feb0d26143573"
+  integrity sha512-QhiOn9KT9YGBdbfWOmJT6pXZOIAxaVrs6J6AMYzRpkUegBTEcv36+ZhE/cfHoT0u2fxVtthHnskOQ/snEzaXQw==
+  dependencies:
+    workbox-core "^6.1.5"
+
 wrap-ansi@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-5.1.0.tgz#1fd1f67235d5b6d0fee781056001bfb694c03b09"
