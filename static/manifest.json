@@ -1,0 +1,10 @@
+{
+	"name": "Nano chat",
+	"short_name": "Nano chat",
+	"start_url": ".",
+	"display": "standalone",
+	"background_color": "#fff",
+	"description": "A readable Hacker News app.",
+	"icons": [],
+	"related_applications": []
+}

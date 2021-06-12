@@ -131,6 +131,24 @@
     tapable "^2.2.0"
     webpack "^5"
 
+"@types/workbox-core@*", "@types/workbox-core@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@types/workbox-core/-/workbox-core-4.3.0.tgz#c2f2a2caad4785f6ccdbef539477d49de6cc9160"
+  integrity sha512-0Tn2bbwYu+Exsp4L3lBA2voRi/7m+6qjgGIs4Lw3Hdm8+7caxAVRra6imkd9Wl3DmK0tKPHinKuo+ElXuqUvlg==
+
+"@types/workbox-routing@*", "@types/workbox-routing@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@types/workbox-routing/-/workbox-routing-4.3.0.tgz#617e00b18806630cffff550b3d2ab09866f89411"
+  integrity sha512-op5P/f6n+9g5X4a+sYONp9EALnNxpoU3oXuB/BjeQv9d+k0bNE4LYSF06K6tXYL4PeCIZVJOi4yMCUCOi2NaqQ==
+
+"@types/workbox-strategies@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@types/workbox-strategies/-/workbox-strategies-4.3.0.tgz#5fde9a05db2874500221d3bb8d35c80dc998f41a"
+  integrity sha512-QTQQOZK2qNy24jXLt83SlqEmuEaQcubQ23515OFDBUpyVow2cYpxF2vzH3fEx7kIXQO/OS1UFNriTEitCHyxyA==
+  dependencies:
+    "@types/workbox-core" "*"
+    "@types/workbox-routing" "*"
+
 "@webassemblyjs/ast@1.11.0":
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.11.0.tgz#a5aa679efdc9e51707a4207139da57920555961f"
@@ -3843,6 +3861,11 @@ tslib@^2.0.3:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.2.0.tgz#fb2c475977e35e241311ede2693cee1ec6698f5c"
   integrity sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==
+
+type-fest@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-1.2.0.tgz#4cdf38ef9b047922c26038080cb269752ae359a2"
+  integrity sha512-++0N6KyAj0t2webXst0PE0xuXb4Dv3z1Z+4SGzK+j/epeWBZCfkQbkW/ezscZwpinmBQ5wu/l4TqagKSVcAGCA==
 
 type-is@~1.6.17, type-is@~1.6.18:
   version "1.6.18"

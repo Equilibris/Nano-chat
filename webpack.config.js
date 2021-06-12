@@ -22,16 +22,23 @@ const baseTemplateConfig = {
 	},
 }
 
+const pages = ['index']
+
 /**
  * @type {import('webpack').Configuration }
  */
 const config = {
 	entry: {
+		cacheWorker: ['./src/workers/cacheWorker/worker.ts'],
+		registerCacheWorker: ['./src/workers/cacheWorker/register.ts'],
 		index: [
 			'./src/index.ts',
 			'./styles/index.scss',
 			'./styles/global-styles.scss',
 		],
+		// index: {
+		// 	import: [],
+		// },
 	},
 
 	mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -105,6 +112,7 @@ const config = {
 	plugins: [
 		(compiler) => {
 			for (const name in compiler.options.entry) {
+				if (!pages.includes(name)) continue
 				const baseConfig = { template: `public/${name}.ejs`, chunks: [name] }
 
 				const plugins = [
@@ -127,7 +135,7 @@ const config = {
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
 		}),
-		new ProvidePlugin({ _: 'underscore' }),
+		new ProvidePlugin({ _: 'lodash' }),
 	],
 
 	optimization: {
