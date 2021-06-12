@@ -16,7 +16,3 @@ export class Dependency<State> extends EventEmitter<{
 		this.state = _state
 	}
 }
-
-const state = new Dependency('hi')
-
-state.addEventListener((newState) => {})
