@@ -13,10 +13,13 @@ type options = { catchup?: boolean; once?: boolean }
 // 	: out
 type THasMoreThanOneKey<T, out> = T extends RequireExactlyOne<T> ? out : never
 
+export type GetListenerType<T> = T extends EventEmitter<infer Data>
+	? [keyof Data, number]
+	: never
 export class EventEmitter<
 	T extends { [type: string]: (...args: any[]) => any }
 > {
-	public history: { [K in keyof T]: Parameters<T[K]>[] }
+	public history: { [K in keyof T]: Parameters<T[K]>[] } = {} as any
 	constructor(public listeners: { [key in keyof T]: T[key][] }) {
 		for (const key in listeners) this.history[key] = []
 	}
@@ -66,7 +69,7 @@ export class EventEmitter<
 		}
 
 		if (options.catchup && this.history[type].length)
-			listener(this.history[type][0])
+			listener(...this.history[type][0])
 
 		this.listeners[type].push(listener)
 
