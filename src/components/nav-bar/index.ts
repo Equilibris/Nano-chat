@@ -1,18 +1,37 @@
 import template from './nav-bar.template.ejs'
 import x from './style.module.scss'
-import { attachStyleLink } from 'framework'
+import { attachStyleLink, CustomComponent } from 'framework'
+
+import { user } from '../../dependencies'
 
 customElements.define(
 	'nc-nav',
-	class extends HTMLElement {
+	class NcNavBar extends CustomComponent {
+		accountElem: HTMLElement
+		userListener: ['stateUpdate', number]
+
+		static get observedAttributes(): string[] {
+			return []
+		}
+
 		constructor() {
 			super()
 
 			const shadowRoot = this.attachShadow({ mode: 'open' })
 
-			shadowRoot.innerHTML = template()
+			shadowRoot.innerHTML = template({ accountState: user.state })
+
+			this.accountElem = shadowRoot.getElementById('account')
+
+			this.userListener = user.addEventListener(
+				(state) => (this.accountElem.textContent = state),
+				{ catchup: true }
+			)
 
 			attachStyleLink(x, shadowRoot)
+		}
+		disconnectedCallback() {
+			user.removeEventListener(this.userListener)
 		}
 	}
 )

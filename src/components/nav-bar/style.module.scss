@@ -7,9 +7,18 @@
 	font-size: 2em;
 
 	ul {
+		list-style: none;
+
 		display: flex;
 
 		justify-content: center;
 		align-items: center;
+
+		> li + li {
+			&::before {
+				content: '|';
+				margin: 0 5vw;
+			}
+		}
 	}
 }
