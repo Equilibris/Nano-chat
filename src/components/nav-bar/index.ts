@@ -23,12 +23,13 @@ customElements.define(
 
 			this.accountElem = shadowRoot.getElementById('account')
 
+			attachStyleLink(x, shadowRoot)
+		}
+		connectedCallback() {
 			this.userListener = user.addEventListener(
 				(state) => (this.accountElem.textContent = state),
 				{ catchup: true }
 			)
-
-			attachStyleLink(x, shadowRoot)
 		}
 		disconnectedCallback() {
 			user.removeEventListener(this.userListener)
