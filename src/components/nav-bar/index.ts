@@ -6,7 +6,7 @@ import { user } from '../../dependencies'
 
 customElements.define(
 	'nc-nav',
-	class NcNavBar extends CustomComponent {
+	class NcNavBar extends CustomComponent<{}> {
 		accountElem: HTMLElement
 		userListener: ['stateUpdate', number]
 

@@ -22,7 +22,7 @@ const baseTemplateConfig = {
 	},
 }
 
-const pages = ['index']
+const pages = ['index','sign-in']
 
 /**
  * @type {import('webpack').Configuration }
@@ -36,9 +36,11 @@ const config = {
 			'./styles/index.scss',
 			'./styles/global-styles.scss',
 		],
-		// index: {
-		// 	import: [],
-		// },
+		'sign-in': [
+			'./src/sign-in.ts',
+			'./styles/sign-in.scss',
+			'./styles/global-styles.scss',
+		],
 	},
 
 	mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',

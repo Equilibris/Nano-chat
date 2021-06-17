@@ -5,8 +5,15 @@
  */
 
 /**
+ * @typedef {object} SignIn
+ * @property {string} title
+ * @property {string} description
+ */
+
+/**
  * @typedef {object} Content
  * @property {Index} index
+ * @property {SignIn} signIn
  */
 
 /**
@@ -44,6 +51,9 @@ const enConfig = {
 				'personal information incase I ' +
 				'do a stupid and leek your ' +
 				'personal data :P',
+		},
+		signIn: {
+			title: 'Sign in',
 		},
 	},
 }
